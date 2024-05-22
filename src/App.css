@@ -1,42 +1,180 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css?family=Proxima Nova:400,800");
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.container {
+    padding: 50px;
+    height: 100vh;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 20px 10px rgba(201, 199, 201, 1);
+    min-height: 80vh;
+    max-height: fit-content;
+    justify-content: center;
+    align-items: center;
+    margin: 0 30px;
+}
+
+.forms {
+    height: 100%;
+    /* text-align: center; */
+    padding: 40px;
+}
+
+input, select {
+    background-color: #e3e3e3;
+    border: none;
+    padding: 12px 15px;
+    /* margin: 8px 0; */
+    width: 100%;
+    /* border-radius: 20px; */
+    font-weight: 600;
+    /* display: block;*/
+    /* margin: 10px;  */
+}
+
+.loadingbutton{
+    border-radius: 20px;
+    border: 1px solid #ed5f45;
+    background-color: #ff4b2b;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 11px 62px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.button {
+    border-radius: 20px;
+    border: 1px solid #ed5f45;
+    background-color: #ff4b2b;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.editButton{
+  border-radius: 20px;
+  border: 1px solid #cdc1bf;
+  background-color: #0a9ac2;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.button:active,.editButton:active {
+    transform: scale(0.95);
+}
+
+.button:focus,.editButton:active {
+    outline: none;
+}
+
+.button.ghost,.editButton:active {
+  color: white;
+  background-color: #62b9d2;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    background: conic-gradient(#0000 10%,#f0ecec);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 3.8px),#000 0);
+    animation: spinner-zp9dbg 1s infinite linear;
+ }
+ 
+ @keyframes spinner-zp9dbg {
+    to {
+       transform: rotate(1turn);
+    }
+ }
+
+ body {
+    font-family: Montserrat, sans-serif;
   }
-  to {
-    transform: rotate(360deg);
+  .navbar-brand {
+    background-image: url('../src/assets/brand_logo.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 70px;
+    height: 50px;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .navbar-nav .nav-item:hover {
+    background-color: rgba(180, 190, 203, 0.4);
   }
+  
+/*  */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+    margin-left: 50%;
+    border-radius: 50%;
+    background:
+      linear-gradient(0deg ,rgb(0 0 0/50%) 30%,#0000 0 70%,rgb(0 0 0/100%) 0) 50%/8% 100%,
+      linear-gradient(90deg,rgb(0 0 0/25%) 30%,#0000 0 70%,rgb(0 0 0/75% ) 0) 50%/100% 8%;
+    background-repeat: no-repeat;
+    animation: l23 1s infinite steps(12);
+  }
+  .loader::before,
+  .loader::after {
+     content: "";
+     grid-area: 1/1;
+     border-radius: 50%;
+     background: inherit;
+     opacity: 0.915;
+     transform: rotate(30deg);
+  }
+  .loader::after {
+     opacity: 0.83;
+     transform: rotate(60deg);
+  }
+  @keyframes l23 {
+    100% {transform: rotate(1turn)}
+  }
+
+
+  #root {  
+    background-color: #F5F7FA;
 }
 
-.card {
-  padding: 2em;
+.box-shadow{
+  border: none;
+  box-shadow: 0px 0px 6px 3px rgba(232,229,232,1);
 }
 
-.read-the-docs {
-  color: #888;
+.container{
+  height: fit-content;
+}
+
+.minimal-statistics{
+  min-height: 80vh;
+}
+
+.card{
+  box-shadow: 0px 0px 7px 1.5px rgba(199,193,199,1);
+
 }
