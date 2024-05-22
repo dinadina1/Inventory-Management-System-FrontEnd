@@ -27,10 +27,10 @@ const Home = () => {
 
   useEffect(() => {
     // Check if the page has been reloaded before
-    const hasReloaded = sessionStorage.getItem('hasReloaded');
+    const hasReloaded = localStorage.getItem('hasReloaded');
 
     if (!hasReloaded) {
-      sessionStorage.setItem('hasReloaded', 'true');
+      localStorage.setItem('hasReloaded', 'true');
       actionReload();
     }
   }, []);

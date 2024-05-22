@@ -64,7 +64,7 @@ const Navbar = () => {
       setIsLogged(false);
       setUser('');
 
-      sessionStorage.clear('hasReloaded');
+      localStorage.removeItem('hasReloaded');
 
       // redirect to login page
       return navigate("/login");
