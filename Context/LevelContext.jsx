@@ -63,7 +63,7 @@ export const LevelContext = ({ children }) => {
         // If the page has not been reloaded before, reload the page
         if (!hasReloaded) {
           localStorage.setItem('isPasswordReserted', 'true');
-          actionReload();
+          window.location.reload();
         }
       }
 
