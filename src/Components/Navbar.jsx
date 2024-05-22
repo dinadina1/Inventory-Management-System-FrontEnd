@@ -1,12 +1,11 @@
 // import required packages
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import userService from "../../Services/UserService";
 import { useNavigate } from "react-router-dom";
 import UserNav from "../Wrappers/UserNav";
 import AdminNav from "../Wrappers/AdminNav";
 
 const Navbar = () => {
-
   // State
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState({});
@@ -22,28 +21,24 @@ const Navbar = () => {
       return navigate("/login");
     }
 
-    const hasReloaded = localStorage.getItem('isPasswordReserted');
+    const hasReloaded = localStorage.getItem("isPasswordReset");
 
     // If the page has not been reloaded before, reload the page
     if (hasReloaded) {
-      
+      localStorage.setItem("isPasswordReset", "false");
       window.location.reload();
-
-      localStorage.setItem('isPasswordReserted', false);
     }
 
-    setIsLogged(false);
-  }, []);
-
+    setIsLogged(true);
+  }, [navigate]);
 
   // define useEffect
   useEffect(() => {
-
     // Get current logged in user
     const currentUser = async () => {
       try {
         const response = await userService.currentUser();
-        if (response.status == 401 || response.status == 404) {
+        if (response.status === 401 || response.status === 404) {
           return navigate("/login");
         }
 
@@ -51,17 +46,16 @@ const Navbar = () => {
         setIsLogged(true);
         setUser(response.data);
         setIsLoading(false);
-
       } catch (err) {
-
         // update state
         setIsLogged(false);
         console.log(err);
         return navigate("/login");
       }
     };
+
     currentUser();
-  }, []);
+  }, [navigate]);
 
   // Function to handle logout
   const handleLogout = async () => {
@@ -73,13 +67,13 @@ const Navbar = () => {
       localStorage.removeItem("authToken");
 
       setIsLogged(false);
-      setUser('');
+      setUser("");
 
       // clear hasReloaded from local storage
-      localStorage.removeItem('hasReloaded');
+      localStorage.removeItem("hasReloaded");
 
-      //  clear isPasswordReserted from local storage
-      localStorage.removeItem('isPasswordReserted');
+      // clear isPasswordReset from local storage
+      localStorage.removeItem("isPasswordReset");
 
       // redirect to login page
       return navigate("/login");
@@ -88,42 +82,31 @@ const Navbar = () => {
     }
   };
 
-
   return (
     <>
-      {
-        isLoading ? (
-          <div className="container" style={{ height: "90vh" }}>
-            <div className="d-flex justify-content-center">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
+      {isLoading ? (
+        <div className="container" style={{ height: "90vh" }}>
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           </div>
-
-        ) : (
-
-          <>
-            {
-              isLogged ? (
-                <>
-                  {
-                    // check role
-                    user.role == "user" ? (
-                      <UserNav user={user} handleLogout={handleLogout} />
-                    ) : (
-                      <AdminNav user={user} handleLogout={handleLogout} />
-                    )
-                  }
-                </>
-              ) : null
-            }
-          </>
-        )
-      }
+        </div>
+      ) : (
+        <>
+          {isLogged && (
+            <>
+              {user.role === "user" ? (
+                <UserNav user={user} handleLogout={handleLogout} />
+              ) : (
+                <AdminNav user={user} handleLogout={handleLogout} />
+              )}
+            </>
+          )}
+        </>
+      )}
     </>
+  );
+};
 
-  )
-}
-
-export default Navbar
+export default Navbar;
