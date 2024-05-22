@@ -2,6 +2,8 @@
 
 <p>Deploed URL: https://inventorymangement.netlify.app/</p>
 
+<br>
+
 ## Table of Contents
 <ol>
   <li>Project Overview</li>
@@ -14,8 +16,12 @@
   <li>Usage</li>
 </ol>
 
+<br>
+
 ## Project Overview
 <p>The Inventory Management System is a full-stack application designed to help users manage their inventory efficiently. The frontend is built with React.js, providing a dynamic and responsive user interface. The application allows users to perform CRUD operations on inventory products, track stock levels, manage purchase orders, and generate reports.</p>
+
+<br>
 
 ## Features
 
@@ -31,6 +37,8 @@
   <li>Generating reports and analytics on inventory details.</li>
 </ul>
 
+<br>
+
 ## Tech Stack
 
 <ul>
@@ -39,15 +47,19 @@
   <li><b>Authentication:</b> JWT, Bcrypt</li>
 </ul>
 
+<br>
+
 ## Setup and Installation
-### Prerequisites
+## Prerequisites
 
 <ul>
   <li>Node.js</li>
   <li>npm</li>
 </ul>
 
-### Installation
+<br>
+
+## Installation
 
 <ol>
   <li>Clone the repository:</li>
@@ -78,6 +90,7 @@ npm start
 
 </ol>
 
+<br>
 
 ## Components
 ### Authentication
@@ -87,6 +100,8 @@ npm start
   <li><b>Signup:</b> Form for user registration using Formik.
 </li>
 </ol>
+
+<br>
 
 ## Dashboard
 
@@ -98,12 +113,16 @@ npm start
   <li><b>PurchaseOrders:</b> List and details of purchase orders.</li>
 </ul>
 
+<br>
+
 ## Common
 <ul>
   <li><b>Navbar:</b> Navigation bar for the application.</li>
   <li><b>Footer:</b> Footer component.</li>
   <li><b>PrivateRoute:</b> Component to protect routes that require authentication.</li>
 </ul>
+
+<br>
 
 ## State Management
 
@@ -112,6 +131,8 @@ npm start
 </li>
 </ul>
 
+<br>
+
 ## Routing
 
 <ul>
@@ -119,11 +140,15 @@ npm start
 
 </ul>
 
+<br>
+
 ## Authentication
 <ul>
   <li><b>JWT:</b> Used for secure authentication.</li>
   <li><b>Bcrypt:</b> Used for password hashing.</li>
 </ul>
+
+<br>
 
 ## Usage
 
