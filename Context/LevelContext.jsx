@@ -57,14 +57,6 @@ export const LevelContext = ({ children }) => {
         setIsLoading(false);
         setIsMailSent(true);
 
-        // Check if the page has been reloaded before
-        const hasReloaded = localStorage.getItem('isPasswordReserted');
-
-        // If the page has not been reloaded before, reload the page
-        if (!hasReloaded) {
-          localStorage.setItem('isPasswordReserted', 'true');
-          window.location.reload();
-        }
       }
 
     } catch (err) {

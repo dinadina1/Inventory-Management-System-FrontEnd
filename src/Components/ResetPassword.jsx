@@ -65,7 +65,19 @@ const ResetPassword = () => {
     }, validate,
     onSubmit: async (values) => {
       values.resetCode = resetCode;
-      await resetPassword(values);
+      const response = await resetPassword(values);
+
+      // check if response is success
+      if (response.status === 200 || response.status === 201) {
+        // Check if the page has been reloaded before
+        const hasReloaded = localStorage.getItem('isPasswordReserted');
+
+        // If the page has not been reloaded before, reload the page
+        if (!hasReloaded) {
+          localStorage.setItem('isPasswordReserted', 'true');
+          window.location.reload();
+        }
+      }
     }
   });
 
