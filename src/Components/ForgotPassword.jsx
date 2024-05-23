@@ -46,8 +46,6 @@ const ForgotPassword = () => {
     onSubmit: async (values) => {
       await forgotPassword(values);
 
-      // clear isPasswordReserted from localStorage
-      // localStorage.removeItem('isPasswordReset');
     }
   });
 

@@ -16,6 +16,18 @@ const Dashboard = () => {
   // state for loading
   const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+    // Check if the page has been reloaded before
+    const hasReloaded = localStorage.getItem('hasReloaded');
+
+    if (!hasReloaded) {
+
+      localStorage.setItem('hasReloaded', 'true');
+      window.location.reload();
+      
+    }
+  }, []);
+
   // useEffect to get stocks
   useEffect(() => {
     const getStocks = async () => {

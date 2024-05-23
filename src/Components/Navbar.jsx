@@ -68,9 +68,6 @@ const Navbar = () => {
       // clear hasReloaded from local storage
       localStorage.removeItem('hasReloaded');
 
-      // clear isPasswordReserted from local storage
-      // localStorage.removeItem('isPasswordReserted');
-
       // redirect to login page
       return navigate("/login");
     } catch (error) {

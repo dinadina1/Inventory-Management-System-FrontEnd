@@ -29,19 +29,6 @@ const Login = () => {
 
   // define useNavigate
   const navigate = useNavigate();
-  
-// reload page
-  // useEffect(()=>{
-  //   const isReserted = localStorage.getItem('isPasswordReserted');
-
-  //   // If the page has not been reloaded before, reload the page
-  //   if (!isReserted) {
-
-  //     window.location.reload();
-
-  //     localStorage.setItem('isPasswordReserted', true);
-  //   }
-  // },[]);
 
   // State
   const [isLoading, setIsLoading] = useState(false);
@@ -63,18 +50,16 @@ const Login = () => {
       try {
 
         setIsLoading(true);
-        console.log(values);
         const response = await userService.login(values);
         if (response) {
 
           // Set token in Local Storage
           localStorage.setItem('authToken', response.data.authToken);
 
-          // return   navigate("/");
           setTimeout(() => {
             setIsLoading(false);
-            return navigate("/");
-          }, 1500);
+           navigate("/");
+          }, 1000);
         }
       } catch (err) {
         serIsError(err.response.data.message);
