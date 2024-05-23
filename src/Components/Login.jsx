@@ -38,7 +38,7 @@ const Login = () => {
     if (token) {
       return navigate("/");
     }
-  }, []);
+  }, [isLoading, setIsLoading]);
 
   const formik = useFormik({
     initialValues: {
