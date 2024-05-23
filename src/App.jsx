@@ -8,7 +8,6 @@ import ResetPassword from "./Components/ResetPassword";
 import Home from './Components/Home';
 import "./App.css";
 import UserProfile from './Components/Users/UserProfile';
-// import  {productLoader}  from './Components/Home';
 import RegisterProduct from './Components/Products/RegisterProduct';
 import AllProducts from './Components/Products/AllProducts';
 import RegisterVendor from './Components/Vendors/RegisterVendor';
@@ -58,7 +57,6 @@ const App = () => {
       children: [
         {
           path: "/",
-          // loader: productLoader,
           element: <Home />
         },
         {
