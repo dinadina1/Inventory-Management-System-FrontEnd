@@ -68,7 +68,7 @@ const Navbar = () => {
       setUser({});
 
       // clear hasReloaded from local storage
-      localStorage.removeItem('hasReloaded');
+      // localStorage.removeItem('hasReloaded');
 
       // redirect to login page
       return navigate("/login");

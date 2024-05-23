@@ -16,23 +16,23 @@ const Dashboard = () => {
   // state for loading
   const [loading, setLoading] = useState(true);
 
-    // useEffect to get stocks
-    useEffect(() => {
-      const getStocks = async () => {
-        try {
-          const response = await userService.allturnover();
-          setLoading(false);
-          setStocks(response.data);
-        } catch (err) {
-          // alert(err.response.data.message);
-          setLoading(false);
-          console.log(err.response);
-        }
+  // useEffect to get stocks
+  useEffect(() => {
+    const getStocks = async () => {
+      try {
+        const response = await userService.allturnover();
+        setLoading(false);
+        setStocks(response.data);
+      } catch (err) {
+        // alert(err.response.data.message);
+        setLoading(false);
+        console.log(err.response);
       }
-      getStocks();
-    }, []);
+    }
+    getStocks();
+  }, []);
 
-  //   useEffect(() => {
+  // useEffect(() => {
   //   // Check if the page has been reloaded before
   //   const hasReloaded = localStorage.getItem('hasReloaded');
 
@@ -40,9 +40,18 @@ const Dashboard = () => {
 
   //     localStorage.setItem('hasReloaded', 'true');
   //     window.location.reload();
-      
+
   //   }
   // }, []);
+
+  useEffect(() => {
+    // Check the reload flag
+    const reload = localStorage.getItem('reload');
+    if (reload) {
+      localStorage.removeItem('reload');
+      window.location.reload();
+    }
+  }, []);
 
 
 
