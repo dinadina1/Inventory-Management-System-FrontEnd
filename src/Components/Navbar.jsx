@@ -20,10 +20,12 @@ const Navbar = () => {
     const token = localStorage.getItem("authToken");
     if (!token) {
       return navigate("/login");
+    } else {
+      setIsLoading(false);
     }
 
-    setIsLogged(false);
-  }, []);
+    // setIsLogged(false);
+  }, [navigate]);
 
 
   // define useEffect
@@ -34,7 +36,7 @@ const Navbar = () => {
       try {
         const response = await userService.currentUser();
         if (response.status == 401 || response.status == 404) {
-          return navigate("/login");
+          navigate("/login");
         }
 
         // update state
@@ -63,7 +65,7 @@ const Navbar = () => {
       localStorage.removeItem("authToken");
 
       setIsLogged(false);
-      setUser('');
+      setUser({});
 
       // clear hasReloaded from local storage
       localStorage.removeItem('hasReloaded');

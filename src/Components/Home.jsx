@@ -17,7 +17,19 @@ export const productLoader = async () => {
 
 const Home = () => {
   // Define useLoaderData
-  const product = useLoaderData();  
+  const product = useLoaderData();
+
+  useEffect(() => {
+    // Check if the page has been reloaded before
+    const hasReloaded = localStorage.getItem('hasReloaded');
+
+    if (!hasReloaded) {
+
+      localStorage.setItem('hasReloaded', 'true');
+      window.location.reload();
+
+    }
+  }, []);
 
   return (
     <>

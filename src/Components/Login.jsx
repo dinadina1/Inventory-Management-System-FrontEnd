@@ -27,18 +27,18 @@ const Login = () => {
   // State
   const [isError, serIsError] = useState(null);
 
-  // define useNavigate
-  const navigate = useNavigate();
-
   // State
   const [isLoading, setIsLoading] = useState(false);
+
+  // define useNavigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token) {
-      return navigate("/");
+      navigate("/");
     }
-  }, [isLoading, setIsLoading]);
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -57,8 +57,8 @@ const Login = () => {
           localStorage.setItem('authToken', response.data.authToken);
 
           setTimeout(() => {
+            navigate("/");
             setIsLoading(false);
-           navigate("/");
           }, 1000);
         }
       } catch (err) {
@@ -67,7 +67,7 @@ const Login = () => {
         console.log(err);
         setTimeout(() => {
           serIsError(null);
-        }, 3000);
+        }, 6000);
       }
     }
   });

@@ -16,33 +16,35 @@ const Dashboard = () => {
   // state for loading
   const [loading, setLoading] = useState(true);
 
+    // useEffect to get stocks
     useEffect(() => {
-    // Check if the page has been reloaded before
-    const hasReloaded = localStorage.getItem('hasReloaded');
-
-    if (!hasReloaded) {
-
-      localStorage.setItem('hasReloaded', 'true');
-      window.location.reload();
-      
-    }
-  }, []);
-
-  // useEffect to get stocks
-  useEffect(() => {
-    const getStocks = async () => {
-      try {
-        const response = await userService.allturnover();
-        setLoading(false);
-        setStocks(response.data);
-      } catch (err) {
-        // alert(err.response.data.message);
-        setLoading(false);
-        console.log(err.response);
+      const getStocks = async () => {
+        try {
+          const response = await userService.allturnover();
+          setLoading(false);
+          setStocks(response.data);
+        } catch (err) {
+          // alert(err.response.data.message);
+          setLoading(false);
+          console.log(err.response);
+        }
       }
-    }
-    getStocks();
-  }, []);
+      getStocks();
+    }, []);
+
+  //   useEffect(() => {
+  //   // Check if the page has been reloaded before
+  //   const hasReloaded = localStorage.getItem('hasReloaded');
+
+  //   if (!hasReloaded) {
+
+  //     localStorage.setItem('hasReloaded', 'true');
+  //     window.location.reload();
+      
+  //   }
+  // }, []);
+
+
 
   return (
     <>
