@@ -11,7 +11,7 @@ export const productLoader = async () => {
     return response.data;
   } catch (err) {
     console.error(err.message);
-    return null;
+    // return null;
   }
 };
 
