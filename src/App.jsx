@@ -1,20 +1,16 @@
 // import required packages
 import { RouterProvider } from 'react-router-dom';
-import { useContext } from "react"
-import AppContext from "../Context/LevelContext";
 import Signup from "./Components/Signup";
 import Login from "./Components/Login";
-import { Router, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import ForgotPassword from "./Components/ForgotPassword";
 import ResetPassword from "./Components/ResetPassword";
 import Home from './Components/Home';
-// import {loader as useLoader} from './Components/Navbar';
 import "./App.css";
 import UserProfile from './Components/Users/UserProfile';
 import { productLoader } from './Components/Home';
 import RegisterProduct from './Components/Products/RegisterProduct';
 import AllProducts from './Components/Products/AllProducts';
-import UserNav from './Wrappers/UserNav';
 import RegisterVendor from './Components/Vendors/RegisterVendor';
 import AllVendors from './Components/Vendors/AllVendors';
 import VendorStatewise from './Components/Vendors/VendorStatewise';
@@ -58,11 +54,7 @@ const App = () => {
     },
     {
       path: "/",
-      // loader: useLoader,
-      // errorElement: <h1>Error</h1>,
-      // element: <UserNav />,
-      element: <Navbar/>,
-      // element: <Home />,
+      element: <Navbar />,
       children: [
         {
           path: "/",
@@ -75,7 +67,7 @@ const App = () => {
         },
         {
           path: "/create-user",
-          element: <CreateUser/>
+          element: <CreateUser />
         },
         {
           path: "/user/all",
@@ -83,7 +75,7 @@ const App = () => {
         },
         {
           path: "/user/edit/:id",
-          element: <EditUserForm/>
+          element: <EditUserForm />
         },
         {
           path: "/product/register-product",
@@ -107,59 +99,59 @@ const App = () => {
         },
         {
           path: "/vendor/all",
-          element: <AllVendors/>
+          element: <AllVendors />
         },
         {
           path: "/vendor/edit/:id",
-          element: <VendorEditForm/>
+          element: <VendorEditForm />
         },
         {
           path: "/vendor/statewise-all",
-          element: <VendorStatewise/>
+          element: <VendorStatewise />
         },
         {
           path: "/vendor/citywise-all",
-          element: <VendorCitywise/>        
+          element: <VendorCitywise />
         },
         {
           path: "/vendor/:id",
-          element: <VendorDet/>
+          element: <VendorDet />
         },
         {
           path: "/purchase/register",
-          element: <RegisterPurchase/>
+          element: <RegisterPurchase />
         },
         {
           path: "/purchase/all",
-          element: <AllPurchaseOrder/>
+          element: <AllPurchaseOrder />
         },
         {
           path: "/purchase/datewise-all",
-          element: <AllPurchaseDatewise/>
+          element: <AllPurchaseDatewise />
         },
         {
           path: "/purchase/stocks",
-          element: <AllStocks/>
+          element: <AllStocks />
         },
         {
           path: "/purchase/edit/:id",
-          element: <PurchaseEditForm/>
+          element: <PurchaseEditForm />
         },
         {
           path: "/purchase/:id",
-          element: <PurchaseDet/>
+          element: <PurchaseDet />
         },
         {
           path: "/report/stocklevel",
-          element: <StockLevelReport/>
+          element: <StockLevelReport />
         },
         {
           path: "/report/purchase-order",
-          element: <PurchseOrderReport/>
+          element: <PurchseOrderReport />
         },
         {
           path: "/report/turnover",
-          element: <TurnOverReport/>
+          element: <TurnOverReport />
         }
       ]
     }
