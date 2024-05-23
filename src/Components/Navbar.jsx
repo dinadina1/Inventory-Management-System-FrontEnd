@@ -30,14 +30,23 @@ const Navbar = () => {
         setIsLogged(true);
         setUser(response.data);
 
+        // Clear reload value from local storage if user is fetched successfully
+        // localStorage.removeItem('reload');
       } catch (err) {
         console.log(err);
         setIsLogged(false);
 
-        if (err.response.data.message == "jwt expired") {
+        // If JWT is expired, navigate to login
+        if (err.response?.data?.message === "jwt expired") {
           navigate("/login");
+        } else {
+          // Get reload value from local storage
+          const reload = localStorage.getItem('reload');
+          if (!reload) {
+            localStorage.setItem('reload', 'true');
+            window.location.reload();
+          }
         }
-
       } finally {
         setIsLoading(false);
       }
@@ -45,7 +54,6 @@ const Navbar = () => {
 
     fetchCurrentUser();
   }, [navigate]);
-
 
   // Function to handle logout
   const handleLogout = async () => {
