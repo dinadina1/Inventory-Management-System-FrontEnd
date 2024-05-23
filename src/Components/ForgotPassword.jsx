@@ -35,16 +35,6 @@ const ForgotPassword = () => {
   const backtoHome = () => {
     navigate("/login");
 
-    const hasReloaded = localStorage.getItem('isPasswordReserted');
-
-    // If the page has not been reloaded before, reload the page
-    if (!hasReloaded) {
-      
-      window.location.reload();
-
-      localStorage.setItem('isPasswordReserted', true);
-    }
-
     setIsMailSent(false);
   }
 

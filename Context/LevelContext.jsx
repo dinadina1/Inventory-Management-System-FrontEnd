@@ -82,7 +82,6 @@ export const LevelContext = ({ children }) => {
         setIsPasswordReset(true);
         setNavigation("/login");
 
-
       }
 
     } catch (err) {
