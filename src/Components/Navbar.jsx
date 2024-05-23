@@ -36,9 +36,9 @@ const Navbar = () => {
     const currentUser = async () => {
       try {
         const response = await userService.currentUser();
-        if (response.status == 401 || response.status == 404) {
-          navigate("/login");
-        }
+        // if (response.status == 401 || response.status == 404) {
+        //   navigate("/login");
+        // }
 
         // update state
         setIsLogged(true);
@@ -70,7 +70,7 @@ const Navbar = () => {
 
       // redirect to login page
       return navigate("/login");
-      
+
     } catch (error) {
       console.error("Error logging out:", error);
     }
