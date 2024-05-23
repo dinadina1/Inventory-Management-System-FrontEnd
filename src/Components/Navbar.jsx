@@ -33,8 +33,11 @@ const Navbar = () => {
       } catch (err) {
         console.log(err);
         setIsLogged(false);
-        // navigate("/login");
-        
+
+        if(err.response.data.message == "jwt expired"){
+          navigate("/login");
+        }
+
       } finally {
         setIsLoading(false);
       }
