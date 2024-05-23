@@ -1,7 +1,8 @@
+// import required packages
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const PurchaseOrderReport = () => {
+const PurchseOrderReport = () => {
   // State for loading
   const [loading, setLoading] = useState(false);
 
@@ -11,9 +12,11 @@ const PurchaseOrderReport = () => {
   // State for success message
   const [success, setSuccess] = useState('');
 
+
   // Function to handle download
   const handleDownload = async () => {
     try {
+
       // Clear error and success messages
       setError('');
       setSuccess('');
@@ -22,7 +25,7 @@ const PurchaseOrderReport = () => {
       setLoading(true);
 
       // API to download stock level report in Excel format
-      const response = await axios.get('https://inventorymangement.netlify.app/purchase/purchaseOrderExcel', {
+      const response = await axios.get('https://inventory-qxcd.onrender.com/purchase/purchaseOrderExcel', {
         responseType: 'blob', // Set responseType to 'blob' to receive binary data
       });
 
@@ -42,7 +45,9 @@ const PurchaseOrderReport = () => {
       link.parentNode.removeChild(link);
       setLoading(false);
       setSuccess('Purchase order report downloaded successfully!');
+
     } catch (error) {
+
       // handle error
       console.error('Error downloading file:', error);
       setLoading(false);
@@ -63,21 +68,26 @@ const PurchaseOrderReport = () => {
         </button>
 
         {/* Display success message */}
-        {success && (
-          <div className="alert alert-success mt-3" role="alert">
-            {success}
-          </div>
-        )}
+        {
+          success && (
+            <div className="alert alert-success mt-3" role="alert">
+              {success}
+            </div>
+          )
+        }
 
         {/* Display error message */}
-        {error && (
-          <div className="alert alert-danger mt-3" role="alert">
-            {error}
-          </div>
-        )}
+        {
+          error && (
+            <div className="alert alert-danger mt-3" role="alert">
+              {error}
+            </div>
+          )
+        }
+
       </div>
     </>
   );
 };
 
-export default PurchaseOrderReport;
+export default PurchseOrderReport;
