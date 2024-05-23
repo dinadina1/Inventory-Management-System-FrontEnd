@@ -19,13 +19,13 @@ const Navbar = () => {
   useEffect(() => {
     const token = localStorage.getItem("authToken");
     if (!token) {
-      return navigate("/login");
+      navigate("/login");
     } else {
       setIsLoading(false);
     }
 
     // setIsLogged(false);
-  }, [navigate]);
+  }, []);
 
 
   // define useEffect
@@ -49,7 +49,7 @@ const Navbar = () => {
         // update state
         setIsLogged(false);
         console.log(err);
-        return navigate("/login");
+        navigate("/login");
       }
     };
     currentUser();
