@@ -1,8 +1,7 @@
-// import required packages
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const PurchseOrderReport = () => {
+const PurchaseOrderReport = () => {
   // State for loading
   const [loading, setLoading] = useState(false);
 
@@ -12,11 +11,9 @@ const PurchseOrderReport = () => {
   // State for success message
   const [success, setSuccess] = useState('');
 
-
   // Function to handle download
   const handleDownload = async () => {
     try {
-
       // Clear error and success messages
       setError('');
       setSuccess('');
@@ -45,9 +42,7 @@ const PurchseOrderReport = () => {
       link.parentNode.removeChild(link);
       setLoading(false);
       setSuccess('Purchase order report downloaded successfully!');
-
     } catch (error) {
-
       // handle error
       console.error('Error downloading file:', error);
       setLoading(false);
@@ -68,26 +63,21 @@ const PurchseOrderReport = () => {
         </button>
 
         {/* Display success message */}
-        {
-          success && (
-            <div className="alert alert-success mt-3" role="alert">
-              {success}
-            </div>
-          )
-        }
+        {success && (
+          <div className="alert alert-success mt-3" role="alert">
+            {success}
+          </div>
+        )}
 
         {/* Display error message */}
-        {
-          error && (
-            <div className="alert alert-danger mt-3" role="alert">
-              {error}
-            </div>
-          )
-        }
-
+        {error && (
+          <div className="alert alert-danger mt-3" role="alert">
+            {error}
+          </div>
+        )}
       </div>
     </>
   );
 };
 
-export default PurchseOrderReport;
+export default PurchaseOrderReport;
