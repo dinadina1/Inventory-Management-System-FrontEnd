@@ -55,7 +55,6 @@ const Login = () => {
 
           // Set token in Local Storage
           localStorage.setItem('authToken', response.data.authToken);
-          localStorage.setItem('reload', 'true');  // Set the reload flag
 
           setTimeout(() => {
             setIsLoading(false);

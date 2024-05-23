@@ -32,27 +32,6 @@ const Dashboard = () => {
     getStocks();
   }, []);
 
-  // useEffect(() => {
-  //   // Check if the page has been reloaded before
-  //   const hasReloaded = localStorage.getItem('hasReloaded');
-
-  //   if (!hasReloaded) {
-
-  //     localStorage.setItem('hasReloaded', 'true');
-  //     window.location.reload();
-
-  //   }
-  // }, []);
-
-  useEffect(() => {
-    // Check the reload flag
-    const reload = localStorage.getItem('reload');
-    if (reload) {
-      localStorage.removeItem('reload');
-      return window.location.reload();
-    }
-  }, []);
-
 
 
   return (

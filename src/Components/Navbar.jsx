@@ -21,13 +21,10 @@ const Navbar = () => {
     // get token from local storage
     const token = localStorage.getItem("authToken");
 
-    setTimeout(() => {
       if (!token) {
         navigate("/login");
       }
       setIsLoading(false);
-
-    }, 2000);
 
   }, []);
 
@@ -71,11 +68,9 @@ const Navbar = () => {
       setIsLogged(false);
       setUser({});
 
-      // clear hasReloaded from local storage
-      // localStorage.removeItem('hasReloaded');
-
       // redirect to login page
       return navigate("/login");
+      
     } catch (error) {
       console.error("Error logging out:", error);
     }
