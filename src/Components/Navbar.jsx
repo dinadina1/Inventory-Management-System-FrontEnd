@@ -34,7 +34,7 @@ const Navbar = () => {
         console.log(err);
         setIsLogged(false);
 
-        if(err.response.data.message == "jwt expired"){
+        if (err.response.data.message == "jwt expired") {
           navigate("/login");
         }
 
@@ -46,6 +46,18 @@ const Navbar = () => {
     fetchCurrentUser();
   }, [navigate]);
 
+
+  // reload page once after login
+  useEffect(() => {
+
+    // Get reload value from local storage
+    const reload = localStorage.getItem('reload');
+    if (!reload) {
+      localStorage.setItem('reload', 'true');
+      window.location.reload();
+    }
+  }, []);
+
   // Function to handle logout
   const handleLogout = async () => {
     try {
@@ -54,6 +66,9 @@ const Navbar = () => {
 
       // clear token from local storage
       localStorage.removeItem("authToken");
+
+      // clear reload value from local storage
+      localStorage.removeItem("reload");
 
       setIsLogged(false);
       setUser({});

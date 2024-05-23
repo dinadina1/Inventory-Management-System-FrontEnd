@@ -55,12 +55,11 @@ const Login = () => {
 
           // Set token in Local Storage
           localStorage.setItem('authToken', response.data.authToken);
-          navigate("/");
 
-          // setTimeout(() => {
-          //   setIsLoading(false);
-          //   return navigate("/");
-          // }, 2000);
+          setTimeout(() => {
+            setIsLoading(false);
+            navigate("/");
+          }, 1000);
 
         }
       } catch (err) {
