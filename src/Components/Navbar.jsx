@@ -17,14 +17,18 @@ const Navbar = () => {
 
   // useEffect for checking if user is logged in
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    if (!token) {
-      navigate("/login");
-    } else {
-      setIsLoading(false);
-    }
 
-    // setIsLogged(false);
+    // get token from local storage
+    const token = localStorage.getItem("authToken");
+
+    setTimeout(() => {
+      if (!token) {
+        navigate("/login");
+      }
+      setIsLoading(false);
+
+    }, 2000);
+
   }, []);
 
 
