@@ -74,7 +74,7 @@ const Login = () => {
           setTimeout(() => {
             setIsLoading(false);
             return navigate("/");
-          }, 1000);
+          }, 1500);
         }
       } catch (err) {
         serIsError(err.response.data.message);
