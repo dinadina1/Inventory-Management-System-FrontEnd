@@ -19,17 +19,17 @@ const Home = () => {
   // Define useLoaderData
   const product = useLoaderData();
 
-  // useEffect(() => {
-  //   // Check if the page has been reloaded before
-  //   const hasReloaded = localStorage.getItem('hasReloaded');
+  useEffect(() => {
+    // Check if the page has been reloaded before
+    const hasReloaded = localStorage.getItem('hasReloaded');
 
-  //   if (!hasReloaded) {
+    if (!hasReloaded) {
 
-  //     localStorage.setItem('hasReloaded', 'true');
-  //     window.location.reload();
+      localStorage.setItem('hasReloaded', 'true');
+      window.location.reload();
 
-  //   }
-  // }, []);
+    }
+  }, []);
 
   return (
     <>
