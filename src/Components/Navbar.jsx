@@ -1,12 +1,11 @@
 // import required packages
-import { useEffect, useState } from "react"
-import userService from "../../Services/UserService";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import userService from "../../Services/UserService";
 import UserNav from "../Wrappers/UserNav";
 import AdminNav from "../Wrappers/AdminNav";
 
 const Navbar = () => {
-
   // State
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState({});
@@ -15,46 +14,32 @@ const Navbar = () => {
   // define navigate
   const navigate = useNavigate();
 
-  // useEffect for checking if user is logged in
+  // useEffect for checking if user is logged in and getting user data
   useEffect(() => {
-
-    // get token from local storage
     const token = localStorage.getItem("authToken");
 
-      if (!token) {
-        navigate("/login");
-      }
+    if (!token) {
       setIsLoading(false);
-
-  }, []);
-
-
-  // define useEffect
-  useEffect(() => {
+      return navigate("/login");
+    }
 
     // Get current logged in user
-    const currentUser = async () => {
+    const fetchCurrentUser = async () => {
       try {
         const response = await userService.currentUser();
-        // if (response.status == 401 || response.status == 404) {
-        //   navigate("/login");
-        // }
-
-        // update state
         setIsLogged(true);
         setUser(response.data);
-        setIsLoading(false);
-
       } catch (err) {
-
-        // update state
-        setIsLogged(false);
         console.log(err);
+        setIsLogged(false);
         navigate("/login");
+      } finally {
+        setIsLoading(false);
       }
     };
-    currentUser();
-  }, []);
+
+    fetchCurrentUser();
+  }, [navigate]);
 
   // Function to handle logout
   const handleLogout = async () => {
@@ -69,49 +54,37 @@ const Navbar = () => {
       setUser({});
 
       // redirect to login page
-      return navigate("/login");
-
+      navigate("/login");
     } catch (error) {
       console.error("Error logging out:", error);
     }
   };
 
-
   return (
     <>
-      {
-        isLoading ? (
-          <div className="container" style={{ height: "90vh" }}>
-            <div className="d-flex justify-content-center">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
+      {isLoading ? (
+        <div className="container" style={{ height: "90vh" }}>
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           </div>
-
-        ) : (
-
-          <>
-            {
-              isLogged ? (
-                <>
-                  {
-                    // check role
-                    user.role == "user" ? (
-                      <UserNav user={user} handleLogout={handleLogout} />
-                    ) : (
-                      <AdminNav user={user} handleLogout={handleLogout} />
-                    )
-                  }
-                </>
-              ) : null
-            }
-          </>
-        )
-      }
+        </div>
+      ) : (
+        <>
+          {isLogged ? (
+            <>
+              {user.role === "user" ? (
+                <UserNav user={user} handleLogout={handleLogout} />
+              ) : (
+                <AdminNav user={user} handleLogout={handleLogout} />
+              )}
+            </>
+          ) : null}
+        </>
+      )}
     </>
+  );
+};
 
-  )
-}
-
-export default Navbar
+export default Navbar;
