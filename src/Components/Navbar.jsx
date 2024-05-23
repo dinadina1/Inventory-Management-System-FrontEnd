@@ -22,16 +22,6 @@ const Navbar = () => {
       return navigate("/login");
     }
 
-    const hasReloaded = localStorage.getItem('isPasswordReserted');
-
-    // If the page has not been reloaded before, reload the page
-    if (!hasReloaded) {
-      
-      window.location.reload();
-
-      localStorage.setItem('isPasswordReserted', true);
-    }
-
     setIsLogged(false);
   }, []);
 
@@ -77,6 +67,9 @@ const Navbar = () => {
 
       // clear hasReloaded from local storage
       localStorage.removeItem('hasReloaded');
+
+      // clear isPasswordReserted from local storage
+      localStorage.removeItem('isPasswordReserted');
 
       // redirect to login page
       return navigate("/login");
