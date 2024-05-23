@@ -1,4 +1,4 @@
-// import required packages
+// Import required packages
 import { useEffect } from 'react';
 import { useLoaderData } from "react-router-dom";
 import userService from "../../Services/UserService";
@@ -15,13 +15,7 @@ export const productLoader = async () => {
   }
 };
 
-// reload page once
-const actionReload = () => {
-  window.location.reload();
-};
-
 const Home = () => {
-
   // Define useLoaderData
   const product = useLoaderData();
 
@@ -31,15 +25,13 @@ const Home = () => {
 
     if (!hasReloaded) {
       localStorage.setItem('hasReloaded', 'true');
-      actionReload();
+      window.location.reload();
     }
   }, []);
 
   return (
     <>
-      <Dashboard
-        data={product}
-      />
+      <Dashboard data={product} />
     </>
   );
 }
