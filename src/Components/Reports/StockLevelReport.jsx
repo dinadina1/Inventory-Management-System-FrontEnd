@@ -25,7 +25,7 @@ const StockLevelReport = () => {
       setLoading(true);
 
       // API to download stock level report in Excel format
-      const response = await axios.get('http://localhost:3500/purchase/stockLevelExcel', {
+      const response = await axios.get('https://inventorymangement.netlify.app/purchase/stockLevelExcel', {
         responseType: 'blob', // Set responseType to 'blob' to receive binary data
       });
 
