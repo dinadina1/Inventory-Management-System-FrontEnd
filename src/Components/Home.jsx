@@ -8,13 +8,24 @@ const Home = () => {
   // State
   const [product, setProduct] = useState({});
 
+  // reload page once after login
+  useEffect(() => {
+
+    // Get reload value from local storage
+    const reload = localStorage.getItem('reload');
+    if (!reload) {
+      localStorage.setItem('reload', 'true');
+      window.location.reload();
+    }
+  }, []);
+
   useEffect(() => {
     // Function to get all products
     const getProducts = async () => {
       try {
         const response = await userService.allProducts();
-        
-        if(response.status === 200 || response.status ===201){
+
+        if (response.status === 200 || response.status === 201) {
           setProduct(response.data);
         }
       } catch (err) {
@@ -24,7 +35,7 @@ const Home = () => {
 
     // Call the function
     getProducts();
-  },[]);
+  }, []);
 
   return (
     <>
@@ -36,7 +47,7 @@ const Home = () => {
             <div className="d-flex justify-content-center">
               <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
-              </div>              
+              </div>
             </div>
           </div>
         )

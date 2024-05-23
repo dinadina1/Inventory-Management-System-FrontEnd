@@ -47,17 +47,6 @@ const Navbar = () => {
   }, [navigate]);
 
 
-  // reload page once after login
-  useEffect(() => {
-
-    // Get reload value from local storage
-    const reload = localStorage.getItem('reload');
-    if (!reload) {
-      localStorage.setItem('reload', 'true');
-      window.location.reload();
-    }
-  }, []);
-
   // Function to handle logout
   const handleLogout = async () => {
     try {
