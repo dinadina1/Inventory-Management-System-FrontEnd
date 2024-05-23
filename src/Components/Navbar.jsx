@@ -29,10 +29,12 @@ const Navbar = () => {
         const response = await userService.currentUser();
         setIsLogged(true);
         setUser(response.data);
+
       } catch (err) {
         console.log(err);
         setIsLogged(false);
-        navigate("/login");
+        // navigate("/login");
+        
       } finally {
         setIsLoading(false);
       }
