@@ -29,6 +29,19 @@ const Login = () => {
   const [isError, serIsError] = useState(null);
 
   const navigate = useNavigate();
+  
+// reload page
+  useEffect(()=>{
+    const isReserted = localStorage.getItem('isPasswordReserted');
+
+    // If the page has not been reloaded before, reload the page
+    if (!isReserted) {
+
+      window.location.reload();
+
+      localStorage.setItem('isPasswordReserted', true);
+    }
+  },[]);
 
   // State
   const [isLoading, setIsLoading] = useState(false);

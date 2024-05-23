@@ -2,6 +2,7 @@
 import { Link, Outlet } from 'react-router-dom';
 
 const AdminNav = ({ user, handleLogout }) => {
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">

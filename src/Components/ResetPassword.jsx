@@ -52,16 +52,6 @@ const ResetPassword = () => {
         navigate(navigation);
         setNavigation(null);
 
-        const isReserted = localStorage.getItem('isPasswordReserted');
-
-        // If the page has not been reloaded before, reload the page
-        if (!isReserted) {
-
-          window.location.reload();
-
-          localStorage.setItem('isPasswordReserted', true);
-        }
-
       }, 2000);
     }
   }, [navigation]);
@@ -72,16 +62,6 @@ const ResetPassword = () => {
     // update state and navigation
     navigate("/login");
     setIsPasswordReset(false);
-
-    const isReserted = localStorage.getItem('isPasswordReserted');
-
-    // If the page has not been reloaded before, reload the page
-    if (!isReserted) {
-
-      window.location.reload();
-
-      localStorage.setItem('isPasswordReserted', true);
-    }
 
   }
 
