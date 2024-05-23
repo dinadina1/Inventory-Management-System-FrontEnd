@@ -59,7 +59,7 @@ const Login = () => {
 
           setTimeout(() => {
             setIsLoading(false);
-            navigate("/");
+            return navigate("/");
           }, 1000);
         }
       } catch (err) {

@@ -49,7 +49,7 @@ const Dashboard = () => {
     const reload = localStorage.getItem('reload');
     if (reload) {
       localStorage.removeItem('reload');
-      window.location.reload();
+      return window.location.reload();
     }
   }, []);
 
