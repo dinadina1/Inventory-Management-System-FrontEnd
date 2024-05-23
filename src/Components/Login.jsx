@@ -23,25 +23,25 @@ const validate = values => {
 };
 
 const Login = () => {
-  // const { login, isLoading, isError, navigation, setNavigation } = useContext(AppContext);
 
-  // const {isError, setIsError} = useContext(AppContext);
+  // State
   const [isError, serIsError] = useState(null);
 
+  // define useNavigate
   const navigate = useNavigate();
   
 // reload page
-  useEffect(()=>{
-    const isReserted = localStorage.getItem('isPasswordReserted');
+  // useEffect(()=>{
+  //   const isReserted = localStorage.getItem('isPasswordReserted');
 
-    // If the page has not been reloaded before, reload the page
-    if (!isReserted) {
+  //   // If the page has not been reloaded before, reload the page
+  //   if (!isReserted) {
 
-      window.location.reload();
+  //     window.location.reload();
 
-      localStorage.setItem('isPasswordReserted', true);
-    }
-  },[]);
+  //     localStorage.setItem('isPasswordReserted', true);
+  //   }
+  // },[]);
 
   // State
   const [isLoading, setIsLoading] = useState(false);

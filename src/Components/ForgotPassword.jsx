@@ -47,7 +47,7 @@ const ForgotPassword = () => {
       await forgotPassword(values);
 
       // clear isPasswordReserted from localStorage
-      localStorage.removeItem('isPasswordReset');
+      // localStorage.removeItem('isPasswordReset');
     }
   });
 
