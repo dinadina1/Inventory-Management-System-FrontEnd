@@ -4,13 +4,11 @@ import userService from "../../Services/UserService";
 import Dashboard from "./Dashboard";
 
 const Home = () => {
-
   // State
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(null); // Set initial state to null instead of an empty object
 
   // reload page once after login
   useEffect(() => {
-
     // Get reload value from local storage
     const reload = localStorage.getItem('reload');
     if (!reload) {
@@ -29,9 +27,9 @@ const Home = () => {
           setProduct(response.data);
         }
       } catch (err) {
-        console.error(err);
+        console.error("Error fetching products:", err);
       }
-    }
+    };
 
     // Call the function
     getProducts();
@@ -44,7 +42,7 @@ const Home = () => {
           <Dashboard data={product} />
         ) : (
           <div className="container" style={{ height: "90vh" }}>
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center align-items-center h-100">
               <div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
               </div>
