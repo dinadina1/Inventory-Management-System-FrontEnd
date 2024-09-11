@@ -1,85 +1,83 @@
-// import required packages
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import userService from "../../../Services/UserService";
 import ProductCard from "./ProductCard";
 
 const AllProducts = () => {
-
   // State to store all products
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // handle delete to delete a product
-  const handleDelete = async (id) => {
+  // Get all products
+  const getALLProducts = async () => {
     try {
-
-      // Api to delete product
-      const response = await userService.deleteProduct(id);
-
-      // check if response is success
-      if (response.status === 200 || response.status === 201) {
-        console.log(response.data);
-        alert("Product deleted successfully");
+      const response = await userService.allProducts();
+      if (response.status === 200) {
+        setProducts(response.data);
+        setIsLoading(false);
+      } else {
+        throw new Error('Failed to fetch products');
       }
-
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      setIsLoading(false);
+      setError(error.message);
+      console.log(error);
     }
   };
 
-  // useEffect to Get all products
+  // Handle delete to delete a product
+  const handleDelete = async (id) => {
+    try {
+      const response = await userService.deleteProduct(id);
+      if (response.status === 200 || response.status === 201) {
+        alert("Product deleted successfully");
+        getALLProducts();
+      } else {
+        throw new Error('Failed to delete product');
+      }
+    } catch (err) {
+      console.log(err);
+      alert("An error occurred while deleting the product");
+    }
+  };
+
+  // useEffect to get all products
   useEffect(() => {
-
-    // get all products
-    const getALLProducts = async () => {
-
-      // call API function
-      const response = await userService.allProducts();
-      try {
-
-        // to check the response
-        if (response.status === 200) {
-          setProducts(response.data);
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.log(error);
-      };
-    };
-
-    // call the function
     getALLProducts();
-  }, [handleDelete]);
-
+  }, []);
 
   return (
     <>
-      {
-        isLoading ? (
-          <div className="container" style={{ height: "90vh" }}>
-            <div className="d-flex justify-content-center">
-              <div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </div>
+      {isLoading ? (
+        <div className="container" style={{ height: "90vh" }}>
+          <div className="d-flex justify-content-center">
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
             </div>
           </div>
-        ) : (
-          <>
-            <h1 className='ps-5 ms-5 mt-3'>All Products</h1>
-            <div className="container pt-0">
-              <div className="row ">
-                {
-                  products.map((product, index) => {
-                    return <ProductCard key={index} product={product} handleDelete={handleDelete} />
-                  })
-                }
-              </div>
+        </div>
+      ) : error ? (
+        <div className="container">
+          <h1 className="text-center">Error: {error}</h1>
+        </div>
+      ) : (
+        <>
+          <h1 className='ps-5 ms-5 mt-3'>All Products</h1>
+          <div className="container pt-0">
+            <div className="row">
+              {products.length ? (
+                products.map((product) => (
+                  <ProductCard key={product.id} product={product} handleDelete={handleDelete} />
+                ))
+              ) : (
+                <h1 className="text-center">No Products Found</h1>
+              )}
             </div>
-          </>
-        )
-      }
+          </div>
+        </>
+      )}
     </>
-  )
-}
+  );
+};
 
-export default AllProducts
+export default AllProducts;

@@ -9,13 +9,29 @@ const AllVendors = () => {
   const [vendors, setVendors] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+      // Function to fetch the vendors
+      const fetchVendors = async () => {
+
+        // API Call
+        const response = await userService.allVendors();
+        try {
+  
+          // update states
+          setIsLoading(false);
+          setVendors(response.data);
+  
+        } catch (err) {
+          console.log(err);
+        };
+      };  
+
   // Function to handle the deletion of a vendor
   const handleDelete = async (id) => {
     try {
       // Api to delete the vendor
       await userService.deleteVendor(id);
       alert("Vendor deleted successfully");
-
+      fetchVendors();
     } catch (err) {
       console.log(err);
     }
@@ -23,26 +39,9 @@ const AllVendors = () => {
 
   // Fetch the list of vendors from the API
   useEffect(() => {
-
-    // Function to fetch the vendors
-    const fetchVendors = async () => {
-
-      // API Call
-      const response = await userService.allVendors();
-      try {
-
-        // update states
-        setIsLoading(false);
-        setVendors(response.data);
-
-      } catch (err) {
-        console.log(err);
-      };
-    };
-
     // Call the function
     fetchVendors();
-  }, [handleDelete]);
+  }, []);
 
 
   return (

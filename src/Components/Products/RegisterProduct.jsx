@@ -297,7 +297,7 @@ const RegisterProduct = () => {
                   </div>
 
                   <div className='text-center mt-3'>
-                    <button type="submit" onClick={formik.handleSubmit} className='button'>Update</button>
+                    <button type="submit" onClick={formik.handleSubmit} className='button'>Register</button>
                     <Link to={"/product/all"}>
                       <button className='editButton pt-2.5 ms-3'>Cancel</button>
                     </Link>
